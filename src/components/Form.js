@@ -19,14 +19,14 @@ class Form extends React.Component {
     } = this.props;
 
     return (
-      <form>
+      <form className="form-container">
         <h1>Adicione uma nova carta</h1>
         <label htmlFor="nome">
           Nome:
           <input
             id="nome"
             type="text"
-            name="nome"
+            name="cardName"
             data-testid="name-input"
             value={ cardName }
             onChange={ onInputChange }
@@ -36,8 +36,10 @@ class Form extends React.Component {
           Descrição
           <textarea
             id="description"
-            name="description"
+            name="cardDescription"
             data-testid="description-input"
+            cols="30"
+            rows="10"
             value={ cardDescription }
             onChange={ onInputChange }
           />
@@ -47,7 +49,7 @@ class Form extends React.Component {
           <input
             id="attr1"
             type="number"
-            name="attr1"
+            name="cardAttr1"
             data-testid="attr1-input"
             value={ cardAttr1 }
             onChange={ onInputChange }
@@ -58,7 +60,7 @@ class Form extends React.Component {
           <input
             id="attr2"
             type="number"
-            name="attr2"
+            name="cardAttr2"
             data-testid="attr2-input"
             value={ cardAttr2 }
             onChange={ onInputChange }
@@ -69,7 +71,7 @@ class Form extends React.Component {
           <input
             id="attr3"
             type="number"
-            name="attr3"
+            name="cardAttr3"
             data-testid="attr3-input"
             value={ cardAttr3 }
             onChange={ onInputChange }
@@ -80,7 +82,7 @@ class Form extends React.Component {
           <input
             type="text"
             data-testid="image-input"
-            name="img-input"
+            name="cardImage"
             id="img-input"
             value={ cardImage }
             onChange={ onInputChange }
@@ -90,7 +92,7 @@ class Form extends React.Component {
           Raridade
           <select
             data-testid="rare-input"
-            name="rarity"
+            name="cardRare"
             id="rarity"
             value={ cardRare }
             onChange={ onInputChange }
@@ -104,7 +106,7 @@ class Form extends React.Component {
           <input
             type="checkbox"
             data-testid="trunfo-input"
-            name="s-trunfo"
+            name="cardTrunfo"
             id="s-trunfo"
             checked={ cardTrunfo }
             onChange={ onInputChange }
