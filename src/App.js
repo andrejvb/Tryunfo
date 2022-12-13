@@ -12,7 +12,7 @@ class App extends React.Component {
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
-    isSaveButtonDisabled: true,
+    // isSaveButtonDisabled: true,
   };
 
   onInputChange = ({ target: { value, name, type, checked } }) => {
