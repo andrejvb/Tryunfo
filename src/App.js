@@ -6,18 +6,27 @@ class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: '',
-    cardAttr2: '',
-    cardAttr3: '',
+    cardAttr1: 0,
+    cardAttr2: 0,
+    cardAttr3: 0,
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
   };
 
-  // onSaveButtonClick = (e) => {
-  //   e.preventDefault();
-  // };
+  onSaveButtonClick = (e) => {
+    e.preventDefault();
+    this.setState({
+      cardName: '',
+      cardDescription: '',
+      cardImage: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardRare: 'normal',
+    });
+  };
 
   buttonValidation = () => {
     const {
@@ -58,6 +67,43 @@ class App extends React.Component {
     this.setState({ [name]: theValue }, this.buttonValidation);
   };
 
+  // onSaveButtonClick = () => {
+  //   const {
+  //     cardName,
+  //     cardDescription,
+  //     cardAttr1,
+  //     cardAttr2,
+  //     cardAttr3,
+  //     cardImage,
+  //     cardRare,
+  //     cardTrunfo,
+  //   } = this.state;
+
+  //   this.setState((prev) => ({
+  //     cardDeck: [
+  //       ...prev.cardDeck,
+  //       {
+  //         cardName,
+  //         cardDescription,
+  //         cardAttr1,
+  //         cardAttr2,
+  //         cardAttr3,
+  //         cardImage,
+  //         cardRare,
+  //         cardTrunfo,
+  //       },
+  //     ],
+  //     cardName: '',
+  //     cardDescription: '',
+  //     cardAttr1: '0',
+  //     cardAttr2: '0',
+  //     cardAttr3: '0',
+  //     cardImage: '',
+  //     cardRare: 'normal',
+  //     cardTrunfo: false,
+  //   }));
+  // };
+
   render() {
     const {
       state: {
@@ -88,15 +134,15 @@ class App extends React.Component {
             onInputChange={ this.onInputChange }
             onSaveButtonClick={ this.onSaveButtonClick }
             isSaveButtonDisabled={ isSaveButtonDisabled }
-            // cardName={ cardName }
-            // cardDescription={ cardDescription }
-            // cardAttr1={ cardAttr1 }
-            // cardAttr2={ cardAttr2 }
-            // cardAttr3={ cardAttr3 }
-            // cardImage={ cardImage }
-            // cardRare={ cardRare }
-            // cardTrunfo={ cardTrunfo }
-            { ...this.State }
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+            // { ...this.State }
           />
           <Card
             cardName={ cardName }
