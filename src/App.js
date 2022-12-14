@@ -14,20 +14,47 @@ class App extends React.Component {
     hasTrunfo: false,
     cardTrunfo: false,
     isSaveButtonDisabled: true,
+    cardDeck: [],
   };
 
-  onSaveButtonClick = (e) => {
-    e.preventDefault();
-    this.setState({
-      cardName: '',
-      cardDescription: '',
-      cardImage: '',
-      cardAttr1: '0',
-      cardAttr2: '0',
-      cardAttr3: '0',
-      hasTrunfo: this.trufoValidation,
-      cardRare: 'normal',
-    });
+  onSaveButtonClick = () => {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    } = this.state;
+    this.setState(
+      (prev) => ({
+        cardDeck: [
+          ...prev.cardDeck,
+          {
+            cardName,
+            cardDescription,
+            cardAttr1,
+            cardAttr2,
+            cardAttr3,
+            cardImage,
+            cardRare,
+            cardTrunfo,
+          },
+        ],
+        cardName: '',
+        cardDescription: '',
+        cardAttr1: '0',
+        cardAttr2: '0',
+        cardAttr3: '0',
+        cardImage: '',
+        cardRare: 'normal',
+        cardTrunfo: false,
+        isSaveButtonDisabled: true,
+      }),
+      this.trufoValidation,
+    );
   };
 
   buttonValidation = () => {
@@ -70,8 +97,8 @@ class App extends React.Component {
   };
 
   trufoValidation = () => {
-    const { cardList } = this.state;
-    const validator = cardList.some((card) => card.cardTrunfo === true);
+    const { cardDeck } = this.state;
+    const validator = cardDeck.some((card) => card.cardTrunfo === true);
     this.setState({ hasTrunfo: validator });
   };
 
@@ -125,6 +152,7 @@ class App extends React.Component {
         cardTrunfo,
         hasTrunfo,
         isSaveButtonDisabled,
+        cardDeck,
       } } = this;
 
     return (
@@ -165,6 +193,25 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </main>
+        <div>
+          <h2>Todas as cartas</h2>
+          <ul>
+            {cardDeck.map((card) => (
+              <li key={ card.name }>
+                <Card
+                  cardName={ card.cardName }
+                  cardDescription={ card.cardDescription }
+                  cardAttr1={ card.cardAttr1 }
+                  cardAttr2={ card.cardAttr2 }
+                  cardAttr3={ card.cardAttr3 }
+                  cardImage={ card.cardImage }
+                  cardRare={ card.cardRare }
+                  cardTrunfo={ card.cardTrunfo }
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
       </>
     );
   }
